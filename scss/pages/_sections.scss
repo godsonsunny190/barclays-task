@@ -1,0 +1,799 @@
+// =============================================================================
+// BUSINESS, INSIGHTS, BENTO, RESULTS, INVESTORS, CAREERS, TABS
+// =============================================================================
+
+@use '../abstracts' as *;
+
+// =============================================================================
+// BUSINESS DIVISIONS — 5-DIVISION BENTO GRID
+// =============================================================================
+.business-section {
+  position: relative;
+  background: linear-gradient(180deg, #F8FAFC 0%, #FFFFFF 100%);
+  padding: 100px 0 110px;
+  border-top: 1px solid rgba($navy-950, 0.06);
+  border-bottom: 1px solid rgba($navy-950, 0.06);
+  overflow: hidden;
+
+  @include respond('md') {
+    padding: 70px 0 80px;
+  }
+}
+
+.business-head {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 56px;
+
+  &__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba($electric, 0.08);
+    border: 1px solid rgba($electric, 0.2);
+    padding: 6px 16px;
+    border-radius: 50px;
+    margin-bottom: 18px;
+
+    .eyebrow {
+      color: $electric-deep;
+      letter-spacing: 0.18em;
+      font-size: 11px;
+    }
+  }
+
+  &__tag {
+    font-size: 11px;
+    font-weight: 600;
+    color: $slate-light;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding-left: 10px;
+    border-left: 1px solid rgba($navy-950, 0.15);
+  }
+
+  &__title {
+    @include section-title(30px, 4.2vw, 48px);
+    color: $navy-950;
+    margin: 0 0 16px;
+  }
+
+  &__lead {
+    font-size: 16px;
+    line-height: 1.65;
+    color: $slate;
+    margin: 0;
+  }
+}
+
+.business-bento {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 48px;
+
+  &__row {
+    display: grid;
+    gap: 24px;
+
+    &--top {
+      grid-template-columns: repeat(2, 1fr);
+
+      @include respond('md') {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    &--bottom {
+      grid-template-columns: repeat(3, 1fr);
+
+      @include respond('lg') {
+        grid-template-columns: repeat(2, 1fr);
+
+        > :last-child {
+          grid-column: span 2;
+        }
+      }
+
+      @include respond('sm') {
+        grid-template-columns: 1fr;
+
+        > :last-child {
+          grid-column: span 1;
+        }
+      }
+    }
+  }
+}
+
+// Bento Card Component
+.bento-card {
+  position: relative;
+  background: $white;
+  border-radius: 22px;
+  overflow: hidden;
+  border: 1px solid rgba($navy-950, 0.08);
+  box-shadow: 0 8px 30px rgba($navy-950, 0.04);
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.35s ease;
+
+  &__media-wrap {
+    position: relative;
+    overflow: hidden;
+  }
+
+  &__media {
+    width: 100%;
+    height: 220px;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  &--featured &__media {
+    height: 270px;
+
+    @include respond('sm') {
+      height: 220px;
+    }
+  }
+
+  &__scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba($navy-950, 0.25) 0%, rgba($navy-950, 0.05) 50%, rgba($navy-950, 0.65) 100%);
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  &__badges {
+    position: absolute;
+    top: 18px;
+    left: 18px;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &__num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    background: rgba($navy-950, 0.8);
+    backdrop-filter: blur(10px);
+    color: $white;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    border: 1px solid rgba($white, 0.15);
+  }
+
+  &__pill {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 50px;
+    background: rgba($white, 0.92);
+    backdrop-filter: blur(10px);
+    color: $navy-950;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+
+  &__action-btn {
+    @include flex-center;
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: rgba($white, 0.92);
+    backdrop-filter: blur(10px);
+    color: $navy-950;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    z-index: 3;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+
+    svg {
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+  }
+
+  &__content {
+    padding: 28px 28px 30px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  &__title {
+    font-family: $font-serif;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    color: $navy-950;
+    margin: 0 0 10px;
+    transition: color 0.25s ease;
+  }
+
+  &--featured &__title {
+    font-size: 26px;
+    margin-bottom: 12px;
+  }
+
+  &__desc {
+    color: $slate;
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0 0 22px;
+    flex: 1;
+  }
+
+  // 3-Stat metrics bar for featured cards
+  &__metrics {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto 1fr;
+    align-items: center;
+    background: rgba($navy-950, 0.03);
+    border: 1px solid rgba($navy-950, 0.06);
+    border-radius: 14px;
+    padding: 14px 18px;
+    margin-top: auto;
+  }
+
+  &__stat {
+    text-align: center;
+  }
+
+  &__stat-val {
+    display: block;
+    font-family: $font-serif;
+    font-size: 17px;
+    font-weight: 750;
+    color: $electric-deep;
+    line-height: 1.1;
+  }
+
+  &__stat-lbl {
+    display: block;
+    font-size: 11px;
+    color: $slate-light;
+    margin-top: 4px;
+    letter-spacing: 0.02em;
+  }
+
+  &__stat-divider {
+    width: 1px;
+    height: 26px;
+    background: rgba($navy-950, 0.1);
+  }
+
+  // Tag stat for bottom 3 cards
+  &__tag-stat {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    background: rgba($navy-950, 0.03);
+    border: 1px solid rgba($navy-950, 0.06);
+    border-radius: 10px;
+    margin-top: auto;
+    font-size: 12px;
+  }
+
+  &__tag-label {
+    font-weight: 700;
+    color: $slate-light;
+    text-transform: uppercase;
+    font-size: 10px;
+    letter-spacing: 0.06em;
+  }
+
+  &__tag-value {
+    font-weight: 600;
+    color: $navy-950;
+  }
+
+  // Hover Interactions
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 28px 65px rgba($navy-950, 0.13);
+    border-color: rgba($electric, 0.4);
+
+    .bento-card__media {
+      transform: scale(1.05);
+    }
+
+    .bento-card__title {
+      color: $electric-deep;
+    }
+
+    .bento-card__action-btn {
+      background: $electric;
+      color: $white;
+      transform: scale(1.08);
+
+      svg {
+        transform: translate(2px, -2px);
+      }
+    }
+  }
+}
+
+// Business Section Footer
+.business-footer {
+  &__card {
+    background: linear-gradient(135deg, $navy-950 0%, $navy-800 100%);
+    border-radius: 20px;
+    padding: 32px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+    box-shadow: 0 16px 40px rgba($navy-950, 0.15);
+
+    @include respond('md') {
+      flex-direction: column;
+      text-align: center;
+      padding: 32px 24px;
+    }
+  }
+
+  &__text-block {
+    max-width: 540px;
+  }
+
+  &__label {
+    display: inline-block;
+    color: $yellow;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  &__title {
+    font-family: $font-serif;
+    color: $white;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.35;
+    margin: 0;
+  }
+
+  &__action {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+
+    @include respond('md') {
+      justify-content: center;
+    }
+  }
+}
+
+// Insights Section
+.insights {
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+
+    @include respond('sm') {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+  }
+}
+
+// Tabs
+.tabs {
+  display: flex;
+  gap: 36px;
+  border-bottom: 1px solid rgba($white, .1);
+  margin-bottom: 48px;
+  overflow-x: auto;
+  padding-bottom: 2px;
+  -webkit-overflow-scrolling: touch;
+
+  &__btn {
+    @include underline-grow(.4s);
+    position: relative;
+    padding: 14px 0;
+    font-family: $font-serif;
+    font-size: 22px;
+    font-weight: 500;
+    color: rgba($white, .5);
+    background: none;
+    border: none;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color .25s ease;
+
+    &--active {
+      color: $white;
+
+      &::after {
+        transform: scaleX(1);
+      }
+    }
+
+    @include respond('sm') {
+      font-size: 18px;
+    }
+  }
+
+  &__panels {
+    position: relative;
+    min-height: 380px;
+
+    @include respond('sm') {
+      min-height: auto;
+    }
+  }
+
+  &__panel {
+    display: none;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity .35s ease, transform .35s ease;
+
+    &--active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @include respond('sm') {
+    gap: 20px;
+    margin-bottom: 32px;
+  }
+}
+
+// Presence (Global Reach)
+.presence {
+  &__caption {
+    text-align: center;
+    margin-top: 20px;
+  }
+}
+
+// Bento Grid Layout
+.bento {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 240px;
+  gap: 20px;
+
+  &__item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 18px;
+    cursor: pointer;
+    background: $white;
+    border: 1px solid rgba($navy-950, .08);
+    transition: transform .3s ease, box-shadow .3s ease;
+
+    &--large {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 50px rgba($navy-950, .12);
+
+      .bento__arrow {
+        opacity: 1;
+        transform: translate(0, 0);
+      }
+
+      .photo__img {
+        transform: scale(1.05);
+      }
+    }
+  }
+
+  &__media {
+    height: 100%;
+    min-height: 220px;
+  }
+
+  &__overlay {
+    @include cover;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 24px;
+    color: $white;
+    background: linear-gradient(180deg, transparent 25%, rgba($navy-950, .88) 100%);
+  }
+
+  &__arrow {
+    @include flex-center;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba($white, .9);
+    color: $electric;
+    opacity: 0;
+    transform: translate(-6px, 6px);
+    transition: all .3s ease;
+    z-index: 3;
+  }
+
+  &__title {
+    @include serif;
+    font-size: 22px;
+    font-weight: 500;
+    margin: 0 0 4px;
+    color: $white;
+  }
+
+  &__text {
+    color: rgba($white, .75);
+    margin: 0;
+    font-size: 13px;
+  }
+
+  &__item--large &__title {
+    font-size: 32px;
+    margin-bottom: 6px;
+  }
+
+  &__item--large &__text {
+    font-size: 14px;
+    max-width: 360px;
+  }
+
+  @include respond('lg') {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 200px;
+
+    &__item--large {
+      grid-row: span 1;
+    }
+
+    &__item--large &__title {
+      font-size: 24px;
+    }
+  }
+
+  @include respond('sm') {
+    grid-template-columns: 1fr;
+    grid-auto-rows: 220px;
+    gap: 16px;
+
+    &__item--large {
+      grid-column: span 1;
+    }
+
+    &__item--large &__title {
+      font-size: 20px;
+    }
+
+    &__overlay {
+      padding: 18px;
+    }
+  }
+}
+
+// Financial Results
+.results {
+  &__intro {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    align-items: center;
+    margin-bottom: 80px;
+  }
+
+  &__title {
+    @include section-title;
+    margin: 14px 0 16px;
+    color: $white;
+  }
+
+  &__text {
+    color: rgba($white, .7);
+    font-size: 16px;
+    line-height: 1.7;
+    margin-bottom: 28px;
+  }
+
+  &__media {
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    min-height: 360px;
+  }
+
+  &__caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 3;
+    padding: 20px 24px;
+    color: $white;
+    background: linear-gradient(180deg, transparent, rgba($navy-950, .85));
+  }
+
+  &__caption-text {
+    @include serif(0);
+    font-style: italic;
+    font-size: 14px;
+    margin: 0;
+    color: rgba($white, .9);
+  }
+
+  &__stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin-bottom: 80px;
+  }
+
+  @include respond('md') {
+    &__intro {
+      grid-template-columns: 1fr;
+      gap: 36px;
+    }
+
+    &__media {
+      min-height: 260px;
+    }
+
+    &__stats {
+      grid-template-columns: repeat(2, 1fr);
+      margin-bottom: 48px;
+    }
+  }
+
+  @include respond('sm') {
+    &__stats {
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-bottom: 40px;
+    }
+
+    &__text {
+      font-size: 14px;
+    }
+  }
+}
+
+// Investors Section
+.investors {
+  border-top: 1px solid rgba($white, .1);
+  padding-top: 64px;
+
+  &__head {
+    margin-bottom: 32px;
+  }
+
+  &__title {
+    @include serif;
+    font-size: clamp(24px, 2.8vw, 34px);
+    font-weight: 500;
+    margin: 10px 0 0;
+    color: $white;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-bottom: 32px;
+
+    @include respond('sm') {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  @include respond('sm') {
+    padding-top: 40px;
+  }
+}
+
+// Careers Section
+.careers {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 420px;
+  border-radius: 24px;
+  background: linear-gradient(135deg, $electric 0%, $electric-deep 50%, $electric-darker 100%);
+
+  &__copy {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 64px 56px;
+    color: $white;
+  }
+
+  &__title {
+    @include section-title(28px, 3.2vw, 40px);
+    margin: 14px 0 16px;
+    color: $white;
+  }
+
+  &__text {
+    color: rgba($white, .85);
+    font-size: 16px;
+    line-height: 1.7;
+    margin-bottom: 32px;
+    max-width: 420px;
+  }
+
+  &__media {
+    position: relative;
+    min-height: 320px;
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba($electric-darker, .55), transparent 40%);
+      z-index: 2;
+    }
+  }
+
+  @include respond('md') {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    border-radius: 20px;
+
+    &__copy {
+      padding: 40px 28px;
+    }
+
+    &__media {
+      min-height: 260px;
+      order: -1;
+    }
+
+    &__text {
+      font-size: 14px;
+    }
+  }
+
+  @include respond('sm') {
+    border-radius: 16px;
+
+    &__copy {
+      padding: 32px 20px;
+    }
+
+    &__media {
+      min-height: 200px;
+    }
+  }
+}

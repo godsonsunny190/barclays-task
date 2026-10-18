@@ -1,0 +1,79 @@
+// =============================================================================
+// BUTTONS
+// =============================================================================
+
+@use '../abstracts' as *;
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 22px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 14px;
+  transition: transform .25s ease, box-shadow .25s ease, background .25s ease, color .25s ease;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  white-space: nowrap;
+
+  &:focus-visible {
+    outline: 2px solid $electric;
+    outline-offset: 2px;
+  }
+
+  &--primary {
+    background: $electric;
+    color: $white;
+
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba($electric, .35);
+    }
+  }
+
+  &--secondary {
+    background: transparent;
+    color: $white;
+    border: 1px solid rgba($white, .3);
+
+    &:hover {
+      background: rgba($white, .1);
+      border-color: rgba($white, .5);
+    }
+  }
+
+  &--outline-dark {
+    background: transparent;
+    color: $navy-950;
+    border: 1px solid rgba($navy-950, .2);
+
+    &:hover {
+      border-color: $electric;
+      color: $electric;
+    }
+  }
+
+  &--white {
+    background: $white;
+    color: $electric;
+
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(#000, .15);
+    }
+  }
+
+  &--block {
+    justify-content: center;
+  }
+
+  &--start {
+    align-self: flex-start;
+  }
+
+  &--compact {
+    padding: 10px 22px;
+  }
+}

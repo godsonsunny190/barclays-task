@@ -1,0 +1,54 @@
+// =============================================================================
+// RESPONSIVE OVERRIDES
+// Cross-cutting mobile fixes that apply across multiple components
+// =============================================================================
+
+@use '../abstracts' as *;
+
+// Stories editorial grid — must be at root level
+@media (max-width: 900px) {
+  .stories__editorial {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+}
+
+// Touch scrolling on mobile
+@media (max-width: 768px) {
+  .tabs,
+  .business__scroller {
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .hero__title,
+  .section-head__title,
+  .results__title,
+  .careers__title,
+  .stories__title,
+  .investors__title {
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+}
+
+// Small screens
+@media (max-width: 560px) {
+  .btn {
+    font-size: 13px;
+    padding: 10px 18px;
+  }
+
+  .investors__actions {
+    flex-direction: column;
+    width: 100%;
+
+    .btn {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+}

@@ -1,0 +1,315 @@
+// =============================================================================
+// UI ELEMENTS — Photo, Grain, Glow, Reveal, Dots, Icon-btn, Logo, Chip, Overlay
+// =============================================================================
+
+@use '../abstracts' as *;
+
+// Container
+.container {
+  max-width: $container-width;
+  margin: 0 auto;
+  padding: 0 24px;
+
+  &--relative {
+    position: relative;
+  }
+
+  @include respond('sm') {
+    padding: 0 18px;
+  }
+}
+
+// Photo & Media Wrapper
+.photo {
+  position: relative;
+  overflow: hidden;
+  background: $navy-950;
+
+  &__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: saturate(.95) contrast(1.03) brightness(.98);
+    transition: transform .7s cubic-bezier(.2, .6, .2, 1);
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba($navy-950, 0) 40%, rgba($navy-950, .18) 100%);
+    pointer-events: none;
+    z-index: 1;
+  }
+}
+
+// Grain Texture
+.grain::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: .05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E");
+}
+
+// Atmospheric Glow Orbs
+.glow {
+  position: absolute;
+  border-radius: 50%;
+
+  &--business {
+    top: -80px;
+    right: -80px;
+    width: 320px;
+    height: 320px;
+    background: radial-gradient(circle, rgba($electric, .16), transparent 70%);
+  }
+
+  &--insights {
+    top: 0;
+    right: 0;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba($electric, .12), transparent 65%);
+  }
+
+  &--results {
+    bottom: -120px;
+    left: -120px;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba($electric, .15), transparent 65%);
+  }
+}
+
+// Reveal Animation
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .7s ease, transform .7s ease;
+
+  &--visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+// Carousel Dots
+.dots {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+
+  &__item {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba($white, .3);
+    cursor: pointer;
+    transition: background .2s ease, transform .2s ease;
+
+    &--active {
+      background: $white;
+      transform: scale(1.3);
+    }
+  }
+}
+
+// Icon Button
+.icon-btn {
+  @include flex-center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba($white, .1);
+  border: 1px solid rgba($white, .15);
+  color: $white;
+  cursor: pointer;
+  transition: background .2s ease;
+
+  &:hover {
+    background: rgba($white, .2);
+  }
+}
+
+// Brand Logo
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  &__img {
+    height: 36px;
+    width: auto;
+    display: block;
+    object-fit: contain;
+  }
+
+  &__mark {
+    @include flex-center;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, $electric, $electric-deep);
+    color: $white;
+    font-weight: 700;
+    font-family: $font-serif;
+    font-size: 18px;
+  }
+
+  &__text {
+    line-height: 1.15;
+  }
+
+  &__name {
+    display: block;
+    color: $white;
+    font-weight: 600;
+    font-size: 18px;
+    font-family: $font-serif;
+    letter-spacing: .01em;
+  }
+
+  &__tagline {
+    color: rgba($white, .4);
+    font-size: 10px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+  }
+
+  &--sm {
+    gap: 10px;
+
+    .logo__img {
+      height: 28px;
+      width: auto;
+    }
+
+    .logo__mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    .logo__name {
+      font-size: 16px;
+      letter-spacing: 0;
+    }
+  }
+}
+
+// Pill Chip
+.chip {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+
+  &--blue {
+    background: rgba($electric, .18);
+    color: $electric-soft;
+  }
+
+  &--yellow {
+    background: rgba($yellow, .18);
+    color: $yellow;
+  }
+}
+
+// Base Section Structure
+.section {
+  padding: 112px 0;
+  background: $white;
+
+  &--sky {
+    background: $sky;
+  }
+
+  &--dark {
+    background: $navy-950;
+    color: $white;
+    position: relative;
+  }
+
+  &--quote {
+    padding: 72px 0;
+  }
+
+  @include respond('md') {
+    padding: 72px 0;
+
+    &--quote {
+      padding: 48px 0;
+    }
+  }
+
+  @include respond('sm') {
+    padding: 56px 0;
+
+    &--quote {
+      padding: 36px 0;
+    }
+  }
+}
+
+// Section Header Block
+.section-head {
+  position: relative;
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 56px;
+
+  &--narrow {
+    max-width: 680px;
+    margin-bottom: 48px;
+  }
+
+  &__title {
+    @include section-title;
+    margin: 14px 0 12px;
+    color: $navy-950;
+  }
+
+  &__text {
+    color: $slate;
+    font-size: 16px;
+  }
+
+  &--light &__title {
+    color: $white;
+    margin-bottom: 0;
+  }
+
+  @include respond('sm') {
+    margin-bottom: 36px;
+  }
+}
+
+// Backdrop Overlay
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(#000, .5);
+  z-index: 140;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .3s ease, visibility .3s;
+
+  &--open {
+    opacity: 1;
+    visibility: visible;
+  }
+}

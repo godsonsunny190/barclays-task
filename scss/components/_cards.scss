@@ -1,0 +1,207 @@
+// =============================================================================
+// CARDS — Division, Article, Stat, Investor, Story
+// =============================================================================
+
+@use '../abstracts' as *;
+
+// Division Cards
+.division-card {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  background: $white;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba($navy-950, .08);
+  cursor: pointer;
+  transition: transform .35s ease, box-shadow .35s ease;
+
+  &__media {
+    height: 180px;
+  }
+
+  &__arrow {
+    @include flex-center;
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba($white, .92);
+    backdrop-filter: blur(8px);
+    color: $electric;
+    transition: background .25s ease, transform .25s ease;
+    z-index: 3;
+  }
+
+  &__body {
+    padding: 22px;
+  }
+
+  &__title {
+    @include serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0 0 8px;
+    color: $navy-950;
+  }
+
+  &__text {
+    color: $slate;
+    font-size: 14px;
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 24px 60px rgba($navy-950, .12);
+
+    .photo__img {
+      transform: scale(1.06);
+    }
+
+    .division-card__arrow {
+      background: $electric;
+      color: $white;
+      transform: rotate(-45deg);
+    }
+  }
+}
+
+// Article Card
+.article-card {
+  background: rgba($white, .04);
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba($white, .08);
+  cursor: pointer;
+  transition: transform .3s ease, border-color .3s ease, background .3s ease;
+
+  &__media {
+    height: 200px;
+
+    @include respond('sm') {
+      height: 160px;
+    }
+  }
+
+  &__body {
+    padding: 24px;
+
+    @include respond('sm') {
+      padding: 18px;
+    }
+  }
+
+  &__title {
+    @include serif;
+    font-size: 20px;
+    font-weight: 500;
+    margin: 14px 0 12px;
+    color: $white;
+    line-height: 1.35;
+
+    @include respond('sm') {
+      font-size: 17px;
+    }
+  }
+
+  &__meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__time {
+    color: rgba($white, .5);
+    font-size: 13px;
+  }
+
+  &__icon {
+    color: $electric;
+  }
+
+  &:hover {
+    transform: translateY(-4px);
+    border-color: rgba($electric, .4);
+    background: rgba($white, .06);
+
+    .photo__img {
+      transform: scale(1.05);
+    }
+  }
+}
+
+// Stat Card
+.stat-card {
+  background: rgba($white, .06);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba($white, .1);
+  border-radius: 16px;
+  padding: 24px;
+  text-align: center;
+
+  &__value {
+    @include serif(0);
+    font-size: clamp(30px, 4vw, 46px);
+    font-weight: 600;
+    color: $white;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+
+  &__label {
+    color: rgba($white, .6);
+    font-size: 13px;
+    margin: 10px 0 0;
+    letter-spacing: .04em;
+  }
+
+  @include respond('sm') {
+    padding: 20px;
+
+    &__label {
+      font-size: 12px;
+    }
+  }
+}
+
+// Investor Card
+.investor-card {
+  background: linear-gradient(135deg, rgba($electric, .16), rgba($electric, .04));
+  border: 1px solid rgba($electric, .25);
+  border-radius: 16px;
+  padding: 24px;
+  cursor: pointer;
+  transition: transform .3s ease, border-color .3s ease;
+
+  &__title {
+    @include serif;
+    font-size: 20px;
+    font-weight: 500;
+    margin: 0 0 16px;
+    color: $white;
+    line-height: 1.35;
+
+    @include respond('sm') {
+      font-size: 17px;
+    }
+  }
+
+  &__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: $electric-soft;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  &:hover {
+    transform: translateY(-3px);
+    border-color: rgba($electric, .5);
+  }
+}

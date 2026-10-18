@@ -1,0 +1,105 @@
+// =============================================================================
+// RESET & BASE
+// =============================================================================
+
+@use '../abstracts' as *;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  border-width: 0;
+  border-style: solid;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  // Lenis manages smooth scrolling
+  scroll-behavior: auto;
+}
+
+body {
+  font-family: $font-sans;
+  color: $navy-950;
+  background: $white;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
+}
+
+.page {
+  position: relative;
+  background-color: transparent;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+  font-weight: inherit;
+  margin: 0;
+}
+
+p,
+blockquote,
+figure {
+  margin: 0;
+}
+
+ul,
+ol {
+  @include reset-list;
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+button,
+input {
+  font-family: $font-sans;
+  font-size: 100%;
+  line-height: inherit;
+  color: inherit;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+}
+
+button {
+  cursor: pointer;
+}
+
+img,
+svg {
+  display: block;
+  vertical-align: middle;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+img[hidden] {
+  display: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: .01ms !important;
+  }
+}

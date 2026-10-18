@@ -1,0 +1,32 @@
+// =============================================================================
+// VARIABLES & DESIGN TOKENS
+// =============================================================================
+
+// Palette
+$navy-950: #0A1128;
+$navy-800: #14204A;
+$electric: #2F80FF;
+$electric-deep: #1A5FD4;
+$electric-darker: #0F4BB0;
+$electric-soft: #8AB8FF;
+$sky: #EEF5FC;
+$white: #FFFFFF;
+$slate: #475569;
+$slate-light: #6B7A90;
+$yellow: #E8B84B;
+$masthead: #060B1C;
+
+// Typography
+$font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+$font-serif: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+// Layout
+$container-width: 1200px;
+
+// Breakpoints (max-width)
+$breakpoints: (
+  'xl': 1024px,
+  'lg': 900px,
+  'md': 768px,
+  'sm': 560px
+);
